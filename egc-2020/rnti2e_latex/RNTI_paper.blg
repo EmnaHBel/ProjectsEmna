@@ -1,0 +1,28 @@
+This is BibTeX, Version 0.99dThe top-level auxiliary file: RNTI_paper.aux
+The style file: rnti.bst
+Database file #1: sigproc.bib
+You're missing a field name---line 123 of file sigproc.bib
+ :  
+ :  % author    = {L. Cabral and et al.},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 186 of file sigproc.bib
+ : 
+ : @article{Maamar11,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 487 of file sigproc.bib
+ : 
+ : @article{ElnaffarMS13,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Repeated entry---line 637 of file sigproc.bib
+ : @inproceedings{SchunselaarVRA14
+ :                                ,
+I'm skipping whatever remains of this entry
+A bad cross reference---entry "SchunselaarVRA14"
+refers to entry "DBLP:conf/bpm/2014w", which doesn't exist
+Warning--I didn't find a database entry for "DBLP:conf/bpm/2014w"
+Warning--no number and no volume in RanjanBDP15
+Warning--empty year in SchunselaarVRA14
+(There were 5 error messages)

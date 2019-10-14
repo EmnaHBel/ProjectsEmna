@@ -1,0 +1,21 @@
+\providecommand\Fr{}
+\providecommand\Eng{}
+\providecommand\andname{and}
+\providecommand\andnamec{and}
+
+\begin{thebibliography}{}
+
+
+\bibitem[{Ranjan \andnamec{} al.}(2015){Ranjan \andnamec{} al.}]{RanjanBDP15}
+Ranjan, R. \andname{} al. (2015).
+\newblock Cloud resource orchestration programming : Overview, issues, and
+  directions.
+\newblock {\em {IEEE} IC\/}, 46--56.
+
+\bibitem[{Schunselaar \andnamec{} al.}(){Schunselaar \andnamec{}
+  al.}]{SchunselaarVRA14}
+Schunselaar, D. M.~M. \andname{} al.
+\newblock {YAWL} in the cloud: Supporting process sharing and variability.
+\newblock In {\em Workshops {BPM}'14}.
+
+\end{thebibliography}

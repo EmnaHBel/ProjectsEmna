@@ -1,0 +1,231 @@
+%% -*- TeX -*- -*- FR -*-
+
+%Avant propos : ces exemples de fichiers ont été mis à jour grâce à
+%l'aide précieuse de Gilbert Ritschard. Pour toute question ou
+%remarque n'hésitez pas à nous contacter : venturin@univ-tours.fr ou
+%gilbert.ritschard@themes.unige.ch
+%Version 3 2008-05-21
+%Version 3.1 2012-11-26 Bruno Pinaud <bruno.pinaud@labri.fr>
+
+\documentclass[a4paper,french]{rnti}
+%\documentclass[a4paper,french,submission]{rnti}  %% pour soumission à EGC
+
+%\documentclass[a4paper,french,noresume]{rnti} %% Pour papier de 2 pages
+
+%%% Avec l'option "showlayout" vous obtenez les deux pages
+%%% de contrôle des paramètres de mise en page.
+
+%\documentclass[a4paper,footer,french,showlayout]{rnti}
+
+%packages nécessaires pour écrire des articles en français en utilisant les accents non latex.
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+
+%pour bien présenter les URL et autres adresses emails
+\usepackage{url}
+
+\usepackage{graphicx}
+
+% Titre court pour entête
+\titrecourt{Cadre Sémantique basé Social pour la Gestion des Ressources Cloud dans les Processus Métiers}
+
+% Noms auteurs pour entête :
+%    Si un seul auteur, mettre : Initiale. NomPremierAuteur
+%    Si deux auteurs, mettre : Initiale1. NomPremierAuteur et Initiale1. NomDeuxiemeAuteur
+%    Si plus de deux auteurs, mettre comme ci-dessous
+%
+\nomcourt{E. Hachicha Belghith et al.}
+
+
+\titre{Cadre Sémantique basé Social pour la Gestion des Ressources Cloud dans les Processus Métiers}
+
+\auteur{Emna Hachicha Belghith \affil{1},
+	Walid Gaaloul\affil{2}\\
+	Zakaria Maamar\affil{3}}
+
+\affiliation{
+	\affil{1}University of Namur, 61 rue de Bruxelles, 5000 Namur, Belgium\\
+	emna.hachicha@unamur.be\\
+	
+	%
+	\affil{2}Télécom SudParis, 9 rue charles fourier, 91000 Evry, France\\
+	walid.gaaloul@telecom-sudparis.eu\\
+	
+	%
+	\affil{3}Zayed University, Dubai, U.A.E\\
+	zakaria.maamar@zu.ac.ae
+}
+
+\resume{%
+	Il existe un consensus sur le rôle que pourrait jouer les technologies sociales dans l'amélioration de la gestion des processus métiers.
+	Cependant, plusieurs défis continuent de miner ce rôle. Dans ce papier, nous discutons d'un défi spécifique, à savoir le manque de formalisation permettant de décrire les ressources cloud utilisées par les processus métiers.
+	
+	Sur la base de nos travaux antérieurs sur les processus sociaux, nous développons un cadre fournissant une description sémantique des ressources cloud, des stratégies pour assurer leur utilisation correcte sur la base de cette description, ainsi qu'un ensemble de relations sociales les reliant.
+	Ainsi, ce cadre permet de garantir une allocation de ressources sans conflits lors de l'exécution du processus métier.
+	Afin d'illustrer la faisabilité de notre cadre, une extension de l'éditeur de processus \textit{Signavio} est développée à l'aide d'un cas d'utilisation réel provenant d'un partenaire industriel.
+}
+
+\summary{%
+	There is a common consensus on the role that social technologies could play in improving business process management. However several challenges continue to undermine this role. In this paper we discuss a specific challenge, which is the lack of formalization to describe cloud resources used by business processes. Building upon our previous work on social business processes we develop a framework that provides a semantic description of cloud resources, strategies to ensure their correct use based on this description, as well as a set of social relations connecting them. Thereby, this framework helps to guarantee a free-of-conflict resource allocation during business process execution. 
+	To illustrate our framework doability, an extension of Signavio process editor is developed using a real use case from an industrial partner.
+}
+
+
+
+\begin{document}
+%\layout
+
+% DEBUT DE L'ARTICLE
+%
+\section{Introduction}
+
+%%%english:::::  Cloud computing has witnessed a major growth in a short period of time. It enables a customized, on-demand access to a shared pool of virtualized resources (e.g., CPU and storage) that organizations tap into whenever there is a need. Business Process Management (BPM) is among the fields that embraces this growth so that a better performance level of Business Processes (BPs) over a lower operating cost is achieved. The combination of cloud and BPM has drawn the attention of the R\&D community [1], [2].
+
+Le cloud computing a connu une croissance importante en peu de temps. Il permet un accès personnalisé, à la demande, à un ensemble partagé de ressources virtualisées (e.g., CPU, stockage) que les organisations exploitent chaque fois qu'il y a un besoin. La gestion des processus métiers (BPM) fait partie des domaines qui englobent cette croissance afin d'atteindre un meilleur niveau de performance des processus métiers (BP) avec un coût d'exploitation réduit. La combinaison du cloud et de BPM a attiré l'attention de la communauté R \& D~\citep{RanjanBDP15,SchunselaarVRA14}.
+
+%%%%english:: Despite the attention, limited work exists to analyze BPs from the resource perspective, that have a major impact on BP performance. Resources can be humans for semi-automated tasks or non-humans for automated and semi-automated tasks. Despite the different studies that examine human resources [3], [4], [5], non human resource management is somehow overlooked. Thus, we focus in this paper on non human resources rather human resources and more specifically cloud resources. Cloud providers define different resource consumption policies, APIs, and networking models. For example, a provider uses OCCI (Open Cloud Computing Interface) API [6], while another uses a different API to define cloud resources. Hence, resource descriptions are of a high heterogeneity with their management strategies. BP tenants may use different modeling languages (e.g., BPMN and EPC) to define their BPs which also raises heterogeneity concerns. Each tenant expresses, via Service Level Agreement (SLA), his needs in terms of resource properties such as capacity, shareability, and elasticity. This heterogeneity is mainly due to the lack of semantics which is not helping provide formal definitions. Ontologies should help address this lack to ensure the interoperability of cloud providers [7]. As a result, a unified common understanding between providers and tenants becomes a must.
+
+Malgré l'attention, il existe peu de travaux qui analysent les BPs du point de vue des ressources, qui ont un impact majeur sur les performances des BPs. Les ressources peuvent être humaines pour les tâches semi-automatisées ou non-humaines pour les tâches automatisées et semi-automatisées. En dépit des différentes études portant sur les ressources humaines [3], [4], [5], la gestion des ressources non humaines est en quelque sorte négligée. Ainsi, nous nous concentrons dans ce papier sur les ressources non humaines plutôt que sur les ressources humaines et plus spécifiquement sur les ressources cloud. \\
+Les fournisseurs de cloud définissent différentes stratégies de consommation de ressources, APIs et modèles de réseau. Par exemple, un fournisseur utilise l'API OCCI (Open Cloud Computing Interface) [6], tandis qu'un autre utilise une API différente pour définir les ressources cloud. Par conséquent, les descriptions des ressources présentent une grande hétérogénéité avec leurs stratégies de gestion. Les locataires de BPs peuvent utiliser différents langages de modélisation (e.g., BPMN, EPC) pour définir leurs BPs, ce qui soulève également des problèmes d'hétérogénéité. Chaque locataire exprime, via un contrat de niveau de service (SLA), ses besoins en termes de propriétés des ressources telles que la capacité, le partage et l'élasticité. Cette hétérogénéité est principalement due au manque de sémantique qui ne permet pas de fournir des définitions formelles. Les ontologies devraient aider à remédier à ce manque afin d'assurer l'interopérabilité des fournisseurs cloud [7]. En conséquence, une compréhension commune unifiée entre les fournisseurs et les locataires devient indispensable. \\
+%%english:::  Besides the several benefits of cloud resources in terms of economy of scale and pay-per-use, a main issue regarding their correct use still exists which is to ensure a controlled resource allocation w.r.t. SLA constraints. For instance a tenant may request not to share a CPU resource with other tenants, or may want to use a particular elasticity policy. Another example is when a resource stops responding, it must be automatically and quickly substituted by resources so that SLAs are satisfied.
+Outre les nombreux avantages des ressources cloud en termes d'économie d'échelle et de paiement à l'utilisation, il reste un problème majeur en ce qui concerne leur utilisation correcte, qui consiste à garantir une allocation contrôlée des ressources en respectant les contraintes SLA. Par exemple, un locataire peut demander de ne pas partager une ressource CPU avec d'autres locataires ou peut utiliser une stratégie d'élasticité particulière. Un autre exemple est lorsqu'une ressource cesse de répondre, elle doit être remplacée automatiquement et rapidement par des ressources afin que les SLAs soient satisfaits. \\
+%%english:: To address the above challenges, we propose in this paper a social-based semantic framework for cloud resource management in BPs. Our framework provides (1) a formal description of cloud resources w.r.t OCCI architecture, and (2) a resolution of conflicts over resources to insure their correct allocation. Concretely, we build upon Business Process Modeling Ontology (BPMO)1 to extend our cloud resource ontology known as Cloud business Process Ontology (CloudPrO) [8]. To do so, we make use of a recent R&D trend which advocates for analyzing BPs from a social perspective [9]. This vision aims at building social relations between the components of a BP, namely task, person, and machine, and how these relations capture previous experiences associated with interactions (i.e., task-2-task, person-2-person, and machine-2-machine) that could help improve BPM [10], [11], [12]. Many organizations already acknowledge the role of Web 2.0 technologies and applications in improving their images, reaching out to more customers, and adjusting their BPs in response to social media [9], [13]. Thus, we adopt the feasibility of identifying social relations between human resources to cloud resources which are assigned to BPs so that networks of resources are developed in conjunction with networks of processes, tasks, and persons. Afterwards, we define a set of strategies for resolving conflicts over resources using Semantic Web Rule Language (SWRL). The proposed ontology is validated by checking its coverage to the OCCI standard, while the feasibility of our framework is exemplified by a real case study from France Telecom Orange labs along with a semantic layer extension of Signavio editor.
+Pour relever les défis ci-dessus, nous proposons dans cet article un cadre sémantique à base sociale pour la gestion des ressources dans le cloud. Notre cadre fournit (1) une description formelle des ressources cloud en respectant l'architecture OCCI et (2) une résolution des conflits sur les ressources afin d'assurer leur attribution correcte.
+Concrètement, nous nous appuyons sur BPMO (Business Process Modeling Ontology) pour étendre notre ontologie de ressources cloud, appelée CloudPrO (Ontology Cloud Process Process) [8]. Pour ce faire, nous nous appuyons sur une tendance récente, qui préconise d'analyser les BP dans une perspective sociale [9]. Cette vision vise à établir des relations sociales entre les composants d'un BP, à savoir une tâche (task), une personne (person) et une machine (machine), et comment ces relations capturent des expériences antérieures associées à des interactions (i.e., task-2-task, person-2-person, and machine-2-machine) qui pourrait aider à améliorer BPM [10], [11], [12]. De nombreuses organisations reconnaissent déjà le rôle des technologies et des applications Web 2.0 dans l'amélioration de leurs images, dans la communication avec plus de clients et dans l'adaptation de leurs BPs en fonction des médias sociaux [9], [13]. Ainsi, nous adoptons la faisabilité d'identifier des relations sociales entre les ressources humaines et les ressources cloud attribuées à des BPs afin que des réseaux de ressources soient développés conjointement avec des réseaux de processus, de tâches et de personnes. Ensuite, nous définissons un ensemble de stratégies pour résoudre les conflits de ressources à l'aide du langage SWRL (Semantic Web Rule Language). L'ontologie proposée est validée en vérifiant sa couverture par rapport au standard OCCI, tandis que la faisabilité de notre cadre est illustrée par une étude de cas réelle des laboratoires France Télécom Orange et par une extension de la couche sémantique de l'éditeur Signavio. \\
+L'article est organisé de la manière suivante. La section II présente l'exemple de motivation, tandis que la section III détaille notre cadre de travail pour la gestion des ressources cloud dans les organisations. Ensuite, nous présentons les stratégies de résolution des conflits de ressources dans la section IV et discutons des travaux connexes dans la section V. Enfin, nous présentons une conclusion et une perspective des travaux futurs.
+
+
+\section{Exemple de Motivation}
+
+\begin{figure}[h]
+	\begin{center}
+		
+		\includegraphics [width=10cm, height=8cm] {Pictures/motivExp2}
+		\caption{Orange service supervision business-process \label{figurmotiv}}
+	\end{center}
+\end{figure}
+
+
+%english:::  The running example is the result of several meetings that the authors had with \textit{France Telecom Orange labs} staff. Known as supervision the example presents how a customer's complaint is addressed due to service quality drop. Fig.~\ref{figurmotiv} models the supervision process in~\textit{BPMN}~2.0. Upon complaint lodging through a ticket, three sub-processes\footnote{In compliance with BPM~terminology, a sub-process is part of a process, consists of activities, and has a control-flow~(www.appian.com/bpmbasics/bpm-glossary).} are initiated: (\textit{i})~manual data retrieval: an expert executes tasks namely \textsf{$t_3$,$t_4$,$t_5$,$t_6$} so that customer data are pulled from a database, (\textit{ii})~manual test: the expert executes~\textsf{$t_7$,$t_8$} to detect anomalies related to the complaint, and finally (\textit{iii})~remote setting: ~\textsf{$t_9$,$t_{10}$} are executed to set remotely the necessary parameters for complaint analysis.
+
+%english::: These sub-processes are re-executed until the problem is identified properly. Finally, either troubleshooting or ticket escalation is performed. 
+
+%english::: To execute tasks, different resources are deemed necessary. Resources are either \textit{human} or \textit{non-human}. As previously mentioned, we only focus in this paper on \textit{non-human} resources and particularly cloud resources. For the rest of the paper, we use the term `resource' to refer to the cloud resources.
+
+L'exemple de motivation est le résultat de plusieurs réunions que les auteurs ont eues avec le personnel des \textit{laboratoires France Télécom Orange}. Connu sous le nom de supervision, cet exemple montre comment la plainte d'un client est traitée en raison d'une baisse de qualité du service. La figure~\ref{figurmotiv} illustre le processus de supervision suivant le langage~\textit{BPMN}~2.0.
+Lors du dépôt de la plainte via un ticket, trois sous-processus\footnote{Conformément à la terminologie BPM, un sous-processus est une partie d'un processus, comprend des activités et dispose d'un flux de contrôle~(www.appian.com/bpmbasics/bpm-glossary).} sont lancés: (i): récupération manuelle des données: un expert exécute des tâches, à savoir \textit{$ t_3 $, $ t_4 $, $ t_5 $, $ t_6 $} de sorte que les données client soient extraites à partir d'une base de données, (ii) test manuel: l'expert exécute~\textit{$ t_7 $, $ t_8 $} pour détecter les anomalies liées à la réclamation et enfin (iii) configuration à distance :~\textit{$ t_9 $, $ t_ {10} $} sont exécutés pour définir à distance les paramètres nécessaires à l'analyse des réclamations. Ces sous-processus sont réexécutés jusqu'à ce que le problème soit correctement identifié. Enfin, un dépannage ou une escalade de ticket est effectué. \\
+Pour exécuter des tâches, différentes ressources sont jugées nécessaires. Les ressources sont soit humaines ou non humaines. Comme mentionné précédemment, dans le présent article, nous nous concentrons uniquement sur les ressources non humaines, en particulier les ressources cloud. Pour le reste du document, nous utilisons le terme «ressource» pour désigner les ressources cloud. \\
+Ces ressources décrivent principalement des ressources de stockage \textit{storage} pour la persistance, de calcul \textit{compute} pour le traitement et de réseau \textit{network} pour la communication.
+Comme le montre la figure~\ref{figurmotiv}, les tâches d'exécution de notre exemple peuvent nécessiter la consommation de diverses ressources. Par exemple, \textit{t}$_4$ a besoin d'une ressource de stockage appelée $\textit {st} _5 $, alors que \textit{t}$_{11}$ nécessite une ressource de calcul appelée $\textit{c}._3$.
+Ces ressources sont caractérisées par des propriétés spécifiques telles que \textit{partageable}/ \textit{non partageable}, \textit{élastique}/non \textit{élastique}. \\
+Plus de détails sur les propriétés sont donnés plus tard. Il est fréquent que des BPs échouent ou soient retardés en cas de conflit de ressources et par conséquent les exigences en matière de SLAs des locataires risquent de ne pas être respectées. Nous illustrons quelques préoccupations concernant la consommation de ressources dans les BPs que nous souhaitons aborder dans ce travail~(Fig.~\ref{figurmotiv}):  
+
+%english::  These resources mainly depict \textit{storage} for persistence, \textit{compute} for processing, and \textit{network} for communication.  As shown in Fig.\ref{figurmotiv}, tasks within our running example may require the consumption of various resources. For instance, \textsf{t}$_4$ needs a storage resource referred to $\textsf{st}_5$, while \textsf{t}$_{11}$ requires a compute resource referred to $\textsf{c}_3$. These resources are characterized by specific properties such as \textit{shareable}/\textit{non-shareable}, \textit{elastic}/non \textit{elastic}. 
+
+%english::: More details on properties are given later. It is common that BPs fail or are delayed in case of resource conflicts and thus tenants' SLA requirements might not be respected. We exemplify some concerns over resource consumption in BPs that we aim to address in this work~(Fig.~\ref{figurmotiv}):
+
+
+\begin{itemize}
+	\item Les ressources $\textsf{c}_2$ et $\textsf{c}_5$ proviennent de différents fournisseurs cloud (resp. Privés, publics) et utilisent des normes différentes. Pour éviter toute ambiguïté, notre cadre vise à fournir une description formelle et sémantique commune des ressources.
+	
+	
+	\item L'expert des \textit{laboratoires Orange} demande $\textsf{c}_3$ de type \textit{calcul} pour $\textsf{t}_3$ (\textit{analyse d'impact de service}) et insiste sur le fait qu'il ne devrait pas être partagé avec d'autres tâches en même temps (\textit{non partageable}). Cependant, $\textsf{t}_{11}$ (\textit{vérifie la détermination de l'étape suivante}) demande simultanément $\textsf{c}_3$  (dans une autre instance de BP). Par conséquent, notre cadre de travail vise à assurer l'utilisation correcte des ressources conformément aux exigences des locataires de BP.
+	
+	\item $\textsf{net}_{13}$ est de type \textit{réseau} et est demandé par $\textsf{t}_{13}$ (\textit{escalade des tickets de troubles}). Cette ressource est sensible et peut échouer de manière inattendue. Notre objectif est de gérer ce problème afin de garantir une exécution de processus fiable.
+	
+	
+	
+	
+	
+	
+	
+	
+\end{itemize}
+
+%\vspace{-0.8cm}
+
+Concrètement, nous définissons un cadre sémantique qui permet d'allouer des ressources à des BPs et de gérer les conflits entre ces ressources lors de l'exécution de ces derniers.
+%\vspace{-0.6cm}
+
+%%english:::Concretely, we define a semantic framework that helps allocate resources to~BPs and deal with conflicts over these resources during BPs execution.
+
+
+\section{Gestion Sémantique de ressources dans les Processus Métiers}
+
+
+\begin{figure}[h]
+	\begin{center}
+		
+		\includegraphics [height=8cm, width=9.8cm] {Pictures/SocloudPrO}
+		\caption{ Représentation \textbf{So-CloudPrO}  \label{figur2}}
+	\end{center}
+\end{figure}
+
+Notre cadre est construit sur un modèle sémantique qui fournit une description formelle des ressources utilisées lors de la gestion des ressources dans les BPs. Pour mettre en pratique la sémantique de la modélisation des BPs, nous capitalisons sur l'ontologie \textit{CloudPrO} qui fournit des définitions sémantiques des ressources dans les BPs en étendant BPMO [14]. En outre, BPMO représente les langages de modélisation de processus de haut niveau qui résume toute notation de modélisation spécifique. Nous visons ici à identifier la plupart des entités ressources et les relations entre elles. De cette façon, nous considérons (i) la nature structurée du monde ''Business" en termes de BPs et (ii) la nature non structurée du monde ''social" en termes de relations établies entre les composants de BP (e.g., les tâches, les utilisateurs), en particulier entre ressources et BP. Ainsi, nous développons une ontologie CloudPrO Social (\textit{So-CloudPrO}) qui couvre ces deux mondes, dont la représentation est illustrée dans la Figure~\ref{figur2}. Le préfixe «SCP» fait référence à l'espace de noms \textit{So-CloudPrO} et le préfixe «Bpmo» représente l'espace de noms \textit{BPMO}.   
+
+La structure des ressources cloud est extraite de la spécification des ressources cloud de l'API OCCI vu qu'il représente le standard le plus utilisé. OCCI est un protocole et une API RESTful servant principalement la couche "IaaS". Par souci de simplicité, nous nous concentrons uniquement sur le modèle "IaaS" pour ne pas accroître la complexité de la gestion des ressources cloud.
+
+Formellement, \textbf{So-CloudPrO} est un tuple de 4 \textit{$<C_{So-CloudPrO}$; $A_{So-CloudPrO}$;$R_{So-CloudPrO}$;$S_{So-CloudPrO}>$} dont $C_{So-CloudPrO}$ est un ensemble de concepts (Section~\ref{concepts}), $A_{So-CloudPrO}$ est un ensemble d'attributs (Section~\ref{attributes}), $R_{So-CloudPrO}$ est un ensemble de règles sur la base des relations existantes (Section~\ref{dependencies}), et $S_{So-CloudPrO}$ est un ensemble de stratégies (Section~\ref{sect4}).
+
+\subsection{Les concepts d'Ontologie} \label{concepts}
+
+%\vspace{-0.1cm}
+
+Puisque l'accent est mis sur la ressource, le concept principal est \textit{SCP:Resource}, qui est défini comme un concept supplémentaire lié à \textit{BPMO:Task} à travers \textit{SCP:Allocate}. La définition de la ressource est indiquée dans $ C_ {So-CloudPrO} $ en termes de~\textit{RDF/RDFS}\footnote{OMG: Métamodèle de Définition d'Ontologies, v1.1 (2014), www.omg.org/spec/ODM /1.1/PDF/}. \\
+%english::: Since the emphasis is on resource, the main concept is \textit{SCP:Resource} which is defined as an additional concept related to \textit{BPMO:Task} through \textit{SCP:Allocate}. The resource definition is reported in $C_{So-CloudPrO}$ in terms of~\textit{RDF/RDFS}\footnote{OMG: Ontology Definition Metamodel, v1.1 (2014), www.omg.org/spec/ODM/1.1/PDF/}. 
+Nous définissons deux sous-concepts \textit{SCP:Human} et \textit{SCP:Non-human} dans lequel se trouve \textit{SCP:Cloud resource}. Comme mentionné précédemment, les ressources humaines sortent du cadre de ce papier et nous sommes particulièrement intéressés par les ressources cloud. Les ressources cloud ont trois sous-types: \textit{SCP:Storage} (stockage), \textit{SCP:Compute} (calcul) et \textit{SCP:Network} (réseau) décrivant le modèle OCCI (Figure~\ref{figurOcciInfra}).
+
+%english:::We define two sub-concepts \textit{SCP:Human} and \textit{SCP:Non-human} in which \textit{SCP:Cloud resource} is located. As mentioned before, human resources are out of the scope of this paper, and we are particularly interested in cloud resources. Cloud resources have three sub-types: \textit{SCP:Storage}, \textit{SCP:Compute}, and \textit{SCP:Network} describing the OCCI model (Fig.~\ref{figurOcciInfra}). %Another sub-concept may exist: \textit{Other type} conceptualizing other resource types such as power or paper ream. 
+
+
+%\vspace{-0.4cm}
+\begin{figure}[h]
+	\begin{center}
+		
+		\includegraphics [height=5cm, width=8cm] {Pictures/OcciCore}
+		\caption{Diagramme de Classe du modèle de base OCCI  \label{OcciCore}}
+	\end{center}
+\end{figure}
+%\vspace{-0.7cm}
+
+%%english:: \textit{SCP:Resource} concept is linked to different other concepts.\textit{SCP:Resource Type} means that the resource can be of type \textit{logical} (i.e.,~their consumption leads into a decrease of their availability) or \textit{physical} (i.e,~their consumption does not lead to a decrease of their availability). \textit{SCP:Constraint} depicts restrictions over resources attributes or behavior. According to OCCI core model showed in Fig.~\ref{OcciCore}, there are several concepts bonded to resource concept. Hence, we define \textit{SCP:Mixin} concept that depicts an extension mechanism which enables to add new resource capabilities to resource instances.
+%%%english:::\textit{SCP:Kind} concept is also specified to represent the type identification mechanism. Both latter concepts are a specialization of \textit{Category} which refers to the basis of the type identification mechanism used by the OCCI. Besides, each cloud resource is able to invoke a set of operations defined through \textit{SCP:Action}. \textit{SCP:Action} has two \textit{SCP:CloudResource} as range and domain. \textit{SCP:Resource Privileges} represent resources state (allowed or not) regarding the execution of these actions in order to organize the work advertised to them. For instance, $st_5$ in our running example is allowed to be duplicated. 
+
+Le concept \textit{SCP:Resource} est lié à différents autres concepts.
+\textit{SCP:Resource Type} signifie que la ressource peut être de type \textit{logical} (logique) (i.e., sa consommation entraîne une diminution de sa disponibilité) ou \textit{physical}  (physique) (i.e., que sa consommation ne mène pas à une diminution de leur disponibilité). \textit{SCP:Constraint} décrit les restrictions sur les attributs ou le comportement des ressources. Selon le modèle de base OCCI présenté dans la Figure~\ref {OcciCore}, plusieurs concepts sont liés au concept "resource". Par conséquent, nous définissons le concept \textit{SCP:Mixin} qui décrit un mécanisme d'extension permettant d'ajouter de nouvelles capacités de ressources aux instances de ressources. \\ Le concept \textit{SCP:Kind} est également spécifié pour représenter le mécanisme d'identification de type. Les deux derniers concepts sont une spécialisation de \textit{Category}, qui fait référence à la base du mécanisme d'identification de type utilisé par l'OCCI. En outre, chaque ressource cloud peut appeler un ensemble d'opérations définies via \textit{SCP:Action}. \textit{SCP:Action} a deux \textit{SCP:CloudResource} en tant que plage et domaine. \textit{SCP:Resource Privileges} représentent l'état des ressources (autorisées ou non) en ce qui concerne l'exécution de ces actions afin d'organiser le travail qui leur est accordé. Par exemple, $st_5$ est autorisé à être dupliqué dans notre exemple.
+
+
+
+%%english:::An important concept is also defined, referred to \textit{SCP:Link}, which depicts relations among resources. More details about \textit{SCP:Link} and cloud properties are presented later. Further, tasks and resources may be supplied by \textit{SCP:Cloud  Provider} that has a \textit{SCP:Provider type} (e.g.,~`public', or `private').
+
+Un concept important est également défini, appelé \textit{SCP:Link}, qui décrit les relations entre les ressources. Plus de détails sur ce dernier et les propriétés cloud sont présentés plus tard. De plus, les tâches et les ressources peuvent être fournies par un fournisseur cloud \textit{SCP:Cloud  Provider} possédant un type \textit{SCP:Provider type} (e.g., `public' ou `privé').
+
+
+\section{Conclusion}
+\vspace{-0.2cm}
+
+%english::: In this paper, we presented a semantic framework that enables (i) formal description of cloud resources according to the architecture of OCCI standard, (ii) capturing social relations connecting BP components based on this description, and (iii) resolving resource-based conflicts. Thereby, we ensure a correct resource allocation in BPs with offering to cloud process providers to benefit from the interoperability and reusability of our shared process knowledge base. Besides, we validated our approach following the golden comparison method, and through a proof of concept. As future work, we intend to further evaluate the effectiveness of our approach by conducting a case study with a large dataset. Also, we aim to extend our semantic definitions to cover the variability aspect at the level of cloud resources.
+
+Dans cet article, nous avons présenté un cadre sémantique permettant (i) une description formelle des ressources cloud selon l'architecture du standard OCCI, (ii) une capture des relations sociales reliant les composants de BP basés sur cette description et (iii) une résolution des conflits liés aux ressources. \\
+Ainsi, nous garantissons une allocation correcte des ressources dans les BPs en offrant aux fournisseurs de processus dans le cloud de bénéficier de l'interopérabilité et de la réutilisabilité de notre base de connaissances de processus partagés.
+De plus, nous avons validé notre approche en suivant la méthode de comparaison en or (golden method) et à travers une preuve de concept.
+Nous avons l'intention, lors des travaux futurs, d'évaluer davantage l'efficacité de notre approche en réalisant une étude de cas avec un grand ensemble de données. En outre, nous visons à étendre nos définitions sémantiques pour couvrir l'aspect variabilité au niveau des ressources cloud.
+% \scriptsize{
+
+\textbf{Acknowledgment.} Work supported by the European Commission under the Erasmus Mundus GreenIT project\footnote{http://www.emundusgreenit.uvigo.es/}
+
+
+\bibliographystyle{rnti}
+\bibliography{sigproc}
+
+
+\appendix
+\section*{Annexe}
+
+Voici un exemple d'annexe. S'il y a plus de deux annexes, merci de
+les numéroter (Annexe~1, Annexe~2, etc).
+
+\Fr
+
+
+\end{document}
